@@ -36,7 +36,9 @@ Connect to the device (using USB or bluetooth).
 
 Then open up a shell/terminal. And proceed like this:
 ```
-$ cd $this_repository/build
+$ cd $this_repository
+$ mkdir build
+$ cd build
 $ cmake ..
 $ make -j$(nproc)
 $ ./RGBSerial (to open it)
