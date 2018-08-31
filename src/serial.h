@@ -19,7 +19,7 @@
 char **listSerialDevices(char **devices, int *deviceCount);
 int createSerialConnection(char *name, int baudrate);
 void destroySerialConnection(void); 
-int sendMessage(int red, int green, int blue, int instruction, int duration, int argument);
+int sendMessage(uint red, uint green, uint blue, uint instruction, uint duration, uint argument);
 void messageWatcher(void);
 
 extern char watcherActive;

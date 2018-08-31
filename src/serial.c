@@ -1,5 +1,7 @@
 #include "serial.h"
 
+#define uint unsigned int
+
 int temp, fd;
 char watcherActive;
 #ifdef __WIN32__
@@ -156,10 +158,10 @@ void destroySerialConnection(void) {
 	#endif
 }
 
-int sendMessage(int red, int green, int blue, int instruction, int duration, int argument) {
+int sendMessage(uint red, uint green, uint blue, uint instruction, uint duration, uint argument) {
 	#if defined(__linux__)||defined(__APPLE__)||defined(__unix__)
 	char messageString[100];
-	sprintf(messageString, "%d,%d,%d,%d,%d,%d\n", red, green, blue, instruction, duration, argument);
+	sprintf(messageString, "%u,%u,%u,%u,%u,%u\n", red, green, blue, instruction, duration, argument);
 	if(write(fd, messageString, strlen(messageString)) < 0) {
 		fprintf(stderr, "Error sending message to %d (error=%d)\n", fd, errno);
 		return 1;
@@ -167,7 +169,7 @@ int sendMessage(int red, int green, int blue, int instruction, int duration, int
 	#endif
 	#ifdef __WIN32__
 	char messageString[100];
-	sprintf(messageString, "%d,%d,%d,%d,%d,%d\n", red, green, blue, instruction, duration, argument);
+	sprintf(messageString, "%u,%u,%u,%u,%u,%u\n", red, green, blue, instruction, duration, argument);
 	if(!WriteFile(hComm, messageString, sizeof(char)*strlen(messageString), &temp, 0)) {
 		fprintf(stderr, "Error sending message!\n");
 		return 1;
